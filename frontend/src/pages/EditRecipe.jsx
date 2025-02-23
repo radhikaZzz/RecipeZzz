@@ -10,7 +10,7 @@ const EditRecipe = () => {
   const params = useParams();
 
   useEffect(() => {
-    // Fetch the recipe data from storage or API
+    // to fetch the recipe data from storage or API
     const storedUsers = getData('users');
     if (storedUsers) {
       const loggedInUser = storedUsers.find((user) => user.isLoggedIn);
@@ -27,7 +27,7 @@ const EditRecipe = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Update the recipe data
+    // for updating the recipe data
     const storedUsers = getData('users');
     if (storedUsers) {
       const loggedInUser = storedUsers.find((user) => user.isLoggedIn);
@@ -44,7 +44,7 @@ const EditRecipe = () => {
         }
       }
     }
-    // Navigate back to the profile page
+    // to navigate back to the profile page
     navigate('/profile');
   };
 

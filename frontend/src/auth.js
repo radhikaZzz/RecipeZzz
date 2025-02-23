@@ -6,7 +6,7 @@ const authenticateUser = (username, password) => {
   const user = users.find((user) => user.username === username && user.password === password);
   if (user) {
     user.isLoggedIn = true;
-    user.recipes = user.recipes || []; // Initialize recipes with an empty array
+    user.recipes = user.recipes || [];
     storeData('users', users);
     return true;
   }

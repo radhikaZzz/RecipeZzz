@@ -41,28 +41,3 @@ const Recipes = () => {
 };
 
 export default Recipes;
-
-// import React from 'react';
-// import NavigationBar from '../components/NavigationBar';
-// import recipes from '../recipes';
-// import { Link } from 'react-router-dom';
-
-// const RecipeList = () => {
-//   return (
-//     <div>
-//       <NavigationBar />
-//       <div className="container mt-5">
-//         <h1>Recipe List</h1>
-//         <ul>
-//           {recipes.map((recipe) => (
-//             <li key={recipe.id}>
-//               <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
-//             </li>
-//           ))}
-//         </ul>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default RecipeList;

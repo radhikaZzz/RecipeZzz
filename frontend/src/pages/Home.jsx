@@ -48,20 +48,3 @@ const Home = () => {
 };
 
 export default Home;
-
-// import React from 'react';
-// import NavigationBar from '../components/NavigationBar';
-
-// const Home = () => {
-//   return (
-//     <div>
-//       <NavigationBar />
-//       <div className="container mt-5">
-//         <h1>Welcome to Recipe Sharing Platform!</h1>
-//         <p>Browse and discover new recipes!</p>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Home;

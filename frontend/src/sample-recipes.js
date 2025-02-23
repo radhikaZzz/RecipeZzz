@@ -14,7 +14,7 @@ const sampleRecipes = [
       ingredients: ['beef', 'broccoli', 'soy sauce', 'rice'],
       details: 'A quick and easy Chinese-inspired dish made with beef, broccoli, and soy sauce.',
     },
-    // Add more sample recipes here...
+    // more sample recipes here...
   ];
   
   export default sampleRecipes;

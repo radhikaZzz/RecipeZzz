@@ -15,7 +15,7 @@ const ProfilePage = () => {
       const loggedInUser = storedUsers.find((user) => user.isLoggedIn);
       if (loggedInUser) {
         setUsername(loggedInUser.username);
-        setRecipes(loggedInUser.recipes || []); // Set recipes to an empty array if its undefined
+        setRecipes(loggedInUser.recipes || []); 
       }
     }
   }, []);
