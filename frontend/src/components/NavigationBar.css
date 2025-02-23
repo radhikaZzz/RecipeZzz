@@ -1,0 +1,16 @@
+.navbar.navbar-expand-lg {
+  padding: 0.5rem;
+  background-color: #8a2020;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar.navbar-expand-lg .navbar-brand {
+  font-size: 1.2rem;
+}
+
+.navbar.navbar-expand-lg .nav-link {
+  padding: 0.5rem;
+}
