@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getData, storeData } from '../storage';
+import axios from '../api/axios';
 
 const CreateRecipe = () => {
   const [recipeName, setRecipeName] = useState('');
+  const [description, setDescription] = useState('');
   const [ingredients, setIngredients] = useState('');
   const [instructions, setInstructions] = useState('');
+  const [image, setImage] = useState('');
   const navigate = useNavigate();
   const [loggedInUser, setLoggedInUser] = useState({});
 
@@ -19,35 +22,48 @@ const CreateRecipe = () => {
     }
   }, []);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
-    console.log('loggedInUser:', loggedInUser);
-    if (loggedInUser.recipes) {
-      loggedInUser.recipes.push({
-        id: Date.now(),
+    try {
+      const response = await axios.post('/recipes', {
         name: recipeName,
-        ingredients: ingredients.split(','),
-        instructions: instructions.split('.'),
+        description,
+        ingredients,
+        instructions,
+        image,
       });
-    } else {
-      loggedInUser.recipes = [
-        {
-          id: Date.now(),
-          name: recipeName,
-          ingredients: ingredients.split(','),
-          instructions: instructions.split('.'),
-        },
-      ];
+      // Handle the response data
+    } catch (error) {
+      // Handle the error
     }
-    const storedUsers = getData('users');
-    if (storedUsers) {
-      const index = storedUsers.findIndex((user) => user.username === loggedInUser.username);
-      if (index !== -1) {
-        storedUsers[index] = loggedInUser;
-        storeData('users', storedUsers);
-      }
-    }
-    navigate('/profile');
+
+    // console.log('loggedInUser:', loggedInUser);
+    // if (loggedInUser.recipes) {
+    //   loggedInUser.recipes.push({
+    //     id: Date.now(),
+    //     name: recipeName,
+    //     ingredients: ingredients.split(','),
+    //     instructions: instructions.split('.'),
+    //   });
+    // } else {
+    //   loggedInUser.recipes = [
+    //     {
+    //       id: Date.now(),
+    //       name: recipeName,
+    //       ingredients: ingredients.split(','),
+    //       instructions: instructions.split('.'),
+    //     },
+    //   ];
+    // }
+    // const storedUsers = getData('users');
+    // if (storedUsers) {
+    //   const index = storedUsers.findIndex((user) => user.username === loggedInUser.username);
+    //   if (index !== -1) {
+    //     storedUsers[index] = loggedInUser;
+    //     storeData('users', storedUsers);
+    //   }
+    // }
+    // navigate('/profile');
   };
 
   return (

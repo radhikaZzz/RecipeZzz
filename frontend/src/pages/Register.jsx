@@ -1,20 +1,32 @@
 import React, { useState } from 'react';
 import { registerUser } from '../auth';
+import axios from '../api/axios';
 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [error, setError] = useState(null);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
-    const isValid = registerUser(username, password);
-    if (!isValid) {
-      setError('Username already exists');
-    } else {
-      // Registration successful, redirect to login page
-      window.location.href = '/login';
+    try {
+      const response = await axios.post('/users/register', {
+        username,
+        email,
+        password,
+      });
+      // Handle the response data
+    } catch (error) {
+      // Handle the error
     }
+    // const isValid = registerUser(username, password);
+    // if (!isValid) {
+    //   setError('Username already exists');
+    // } else {
+    //   // Registration successful, redirect to login page
+    //   window.location.href = '/login';
+    // }
   };
 
   return (

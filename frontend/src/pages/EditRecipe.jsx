@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getData, storeData } from '../storage';
-
+import axios from '../api/axios';
 const EditRecipe = () => {
+  const [recipeId, setRecipeId] = useState('');
   const [recipeName, setRecipeName] = useState('');
+  const [description, setDescription] = useState('');
   const [ingredients, setIngredients] = useState('');
   const [instructions, setInstructions] = useState('');
+  const [image, setImage] = useState('');
   const navigate = useNavigate();
   const params = useParams();
 
@@ -25,27 +28,39 @@ const EditRecipe = () => {
     }
   }, []);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
-    // for updating the recipe data
-    const storedUsers = getData('users');
-    if (storedUsers) {
-      const loggedInUser = storedUsers.find((user) => user.isLoggedIn);
-      if (loggedInUser) {
-        const recipeIndex = loggedInUser.recipes.findIndex((recipe) => recipe.id === parseInt(params.id));
-        if (recipeIndex !== -1) {
-          loggedInUser.recipes[recipeIndex] = {
-            id: parseInt(params.id),
-            name: recipeName,
-            ingredients: ingredients.split(','),
-            instructions: instructions.split('.'),
-          };
-          storeData('users', storedUsers);
-        }
-      }
+    try {
+      const response = await axios.patch(`/recipes/${recipeId}`, {
+        name: recipeName,
+        description,
+        ingredients,
+        instructions,
+        image,
+      });
+      // Handle the response data
+    } catch (error) {
+      // Handle the error
     }
-    // to navigate back to the profile page
-    navigate('/profile');
+    // for updating the recipe data
+    // const storedUsers = getData('users');
+    // if (storedUsers) {
+    //   const loggedInUser = storedUsers.find((user) => user.isLoggedIn);
+    //   if (loggedInUser) {
+    //     const recipeIndex = loggedInUser.recipes.findIndex((recipe) => recipe.id === parseInt(params.id));
+    //     if (recipeIndex !== -1) {
+    //       loggedInUser.recipes[recipeIndex] = {
+    //         id: parseInt(params.id),
+    //         name: recipeName,
+    //         ingredients: ingredients.split(','),
+    //         instructions: instructions.split('.'),
+    //       };
+    //       storeData('users', storedUsers);
+    //     }
+    //   }
+    // }
+    // // to navigate back to the profile page
+    // navigate('/profile');
   };
 
   return (

@@ -2,6 +2,7 @@ import React from 'react';
 import recipes from '../recipes';
 import { useParams } from 'react-router-dom';
 
+
 const RecipeDetail = () => {
   const { id } = useParams();
   const recipe = recipes.find((recipe) => recipe.id === parseInt(id));

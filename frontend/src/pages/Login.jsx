@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import { authenticateUser } from '../auth';
-
+import axios from '../api/axios';
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
-    const isValid = authenticateUser(username, password);
-    if (!isValid) {
-      setError('Invalid username or password');
-    } else {
-      // Login successful, redirect to home page
-      window.location.href = '/';
+    try {
+      const response = await axios.post('/users/login', {
+        username,
+        password,
+      });
+      // Handle the response data
+    } catch (error) {
+      // Handle the error
     }
   };
+  
 
   return (
     <div className="container mt-5">
